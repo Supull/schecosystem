@@ -26,7 +26,7 @@ function Home() {
                     onChange={(e) => setsearchQuery(e.target.value)}
                     
                 />
-                <button type="submit" className="search-button">search</button>
+                <button type="submit" className="search-button">searchhhhh</button>
             </form>
             <div className="movies-grind">
                 {movies.map((movie) => (
