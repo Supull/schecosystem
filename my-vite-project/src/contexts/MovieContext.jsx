@@ -79,7 +79,11 @@ export const MovieProvider = ({children}) => {
         favorites,
         addToFavorites,
         removeFromFavorites,
-        isFavorite
+        isFavorite,
+        ToWatch,
+        addToWatch,
+        removeToWatch,
+        isToWatch
     }
 
     return (

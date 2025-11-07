@@ -5,8 +5,10 @@ function MovieCard({movie}) {
 
 
     const {isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
+    const {isToWatch, addToWatch, removeToWatch} = useMovieContext()
 
     const favorite = isFavorite(movie.id)
+    const ToWatchv = isToWatch(movie.id)
 
     function handlefavourite(e) {
 
@@ -14,6 +16,15 @@ function MovieCard({movie}) {
         if (favorite) removeFromFavorites(movie.id)
         else addToFavorites(movie)
 
+    }
+
+    function handleToWatch() {
+        e.preventDefault()
+        if (ToWatchv) {
+            removeToWatch(movie)
+        } else {
+            addToWatch(movie)
+        }
 
     }
 
@@ -23,7 +34,7 @@ function MovieCard({movie}) {
                 <img src = {`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt = {movie.title}/>
                 <div className="movie-overlay">
                     <button className={`favorite-btn ${favorite ? "active" : ""}`} onClick={handlefavourite}> ❤ </button>
-                    <button>➡</button>
+                    <button onClick={handleToWatch}>➡</button>
                 </div>
 
             </div>
