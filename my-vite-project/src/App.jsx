@@ -7,6 +7,7 @@ import Favorite from './pages/favourite'
 import NavBar from './components/NavBar.jsx';
 import { MovieProvider } from './contexts/MovieContext.jsx';
 import ToWatch from './pages/ToWatch.jsx';
+import Popup from './components/Popup.jsx';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/favorites" element={<Favorite/>}/>
           <Route path="/ToWatch" element={<ToWatch/>}/>
+          <Route path="/popup-page" element={<Popup/>}/>
         </Routes>
       </main>
     </MovieProvider>
