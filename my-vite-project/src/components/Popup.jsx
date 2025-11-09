@@ -2,13 +2,19 @@
 
 function Popup() {
 
-    function handlebut1(e) {
+    function handleratingsub(e) {
         
+        window.close("/popup-page", "PopupWindow", "width=400,height=300");
+
     }
 
     return(
         <div>
-            <button onClick={handlebut1}>hi</button>
+            <form id="numberForm">
+                <label for="numInput">Rating:</label>
+                <input type="number" id="numInput" name="numInput" required/>
+                <button onClick={handleratingsub} type="submit"> Submit</button>
+            </form>
         </div>
     )
 
