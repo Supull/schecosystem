@@ -8,6 +8,7 @@ function MovieCard({movie}) {
     const [popstatus, setpopstatus] = useState(false)
     const {isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
     const {isToWatch, addToWatch, removeToWatch} = useMovieContext()
+    const {rating, setRating} = useMovieContext()
 
 
     const favorite = isFavorite(movie.id)
@@ -32,7 +33,8 @@ function MovieCard({movie}) {
     }
 
     function handlerate(e) {
-        e.preventDefault
+        
+        e.preventDefault();
         window.open("/popup-page", "PopupWindow", "width=400,height=300");
 
 
@@ -47,6 +49,15 @@ function MovieCard({movie}) {
                     <button className={`favorite-btn ${favorite ? "active" : ""}`} onClick={handlefavourite}> ❤ </button>
                     <button className = "ToWatch-btn" onClick={handleToWatch}>➡</button>
                     <button onClick={handlerate}>Rate</button>
+                    <p
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "50px", 
+                            fontSize: "15px"
+                        }}>
+                        {rating}</p>
                 </div>
 
             </div>

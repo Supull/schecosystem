@@ -8,6 +8,9 @@ export const MovieProvider = ({children}) => {
 
     const [favorites, setFavorites] = useState([])
     const [ToWatch, setToWatch] = useState([])
+    const [rating, setRating] = useState("-/10")
+
+    
 
     useEffect(() => {
         const storedFavs = localStorage.getItem("favorites")
@@ -83,7 +86,9 @@ export const MovieProvider = ({children}) => {
         ToWatch,
         addToWatch,
         removeToWatch,
-        isToWatch
+        isToWatch,
+        rating,
+        setRating
     }
 
     return (
