@@ -1,37 +1,86 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { useMovieContext } from "../contexts/MovieContext";
 
-function Popup() {
+function Popup({ closeModal }) {
+  const [inputValue, setInputValue] = useState("");
+  const { setRating } = useMovieContext();
 
-    const [inputValue, setinputValue] = useState("");
-    const { setRating } = useMovieContext();
+  function handleSubmit(e) {
+    e.preventDefault();
+    setRating(inputValue);
+    closeModal();
+  }
 
-    function handleratingsub(e) {
-        
-        e.preventDefault();
-
-        setRating(inputValue);
-        
-        window.close();
-
-    }
-
-    return(
-        <div>
-            <form id="numberForm">
-                <label htmlFor="numInput">Rating:</label>
-                <input type="number" 
-                    id="numInput" 
-                    name="numInput" 
-                    value={inputValue} 
-                    onChange={(e) => setinputValue(e.target.value)} 
-                    required
-                />
-                <button type="submit" onClick={handleratingsub}> Submit</button>
-            </form>
-        </div>
-    )
-
+  return createPortal(
+    <div style={styles.backdrop} onClick={closeModal}>
+      <div
+        style={styles.modal}
+        onClick={(e) => e.stopPropagation()} 
+      >
+        <h3>Rate Movie</h3>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="number"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            required
+            style={styles.input}
+          />
+          <button type="submit" style={styles.button}>Submit</button>
+          <button type="button" onClick={closeModal} style={styles.close}>Close</button>
+        </form>
+      </div>
+    </div>,
+    document.body 
+  );
 }
+
+const styles = {
+  backdrop: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    background: "rgba(0,0,0,0.5)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 10000
+  },
+  modal: {
+    background: "white",
+    padding: "20px",
+    borderRadius: "10px",
+    width: "300px",
+    textAlign: "center"
+  },
+  input: {
+    width: "80%",
+    padding: "8px",
+    marginTop: "10px"
+  },
+  button: {
+    width: "80%",
+    padding: "10px",
+    marginTop: "10px",
+    background: "green",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  },
+  close: {
+    width: "80%",
+    padding: "10px",
+    marginTop: "10px",
+    background: "gray",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  }
+};
 
 export default Popup;
