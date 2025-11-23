@@ -8,7 +8,7 @@ export const MovieProvider = ({children}) => {
 
     const [favorites, setFavorites] = useState([])
     const [ToWatch, setToWatch] = useState([])
-    const [rating, setRating] = useState("-/10")
+    const [rating, setRating] = useState("m")
     const [movies, setMovies] = useState([]);
 
     

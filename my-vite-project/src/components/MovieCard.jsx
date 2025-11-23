@@ -32,9 +32,10 @@ function MovieCard({ movie }) {
   function showmode() {
 
     if (showModal === true) {
-        return <Popup closeModal={() => setShowModal(false)} />
+        return <Popup movie={movie} closeModal={() => setShowModal(false)} />
     }
   }
+
 
   return (
     <div className="movie-card">

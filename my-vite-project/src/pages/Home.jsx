@@ -21,7 +21,7 @@ function Home() {
                 ...movie,          
                 ratings: "-/10"     
                 }));
-                setMovies(popularMovies)
+                setMovies(moviesWithRating)
             } catch (err) {
                 console.log(err)
                 setError("Failed to load movies...")
@@ -43,7 +43,11 @@ function Home() {
         setLoading(true)
         try {
             const searchResults = await searchMovies(searchQuery)
-            setMovies(searchResults)
+            const moviesWithRating = searchResults.map(movie => ({
+                ...movie,          
+                ratings: "-/10"     
+            }));
+            setMovies(moviesWithRating)
             setError(null)
 
         } catch (err) {

@@ -2,13 +2,28 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useMovieContext } from "../contexts/MovieContext";
 
-function Popup({ closeModal }) {
+function Popup({ closeModal, movie }) {
   const [inputValue, setInputValue] = useState("");
-  const { setRating } = useMovieContext();
+  const { rating, setRating } = useMovieContext();
+  const { movies, setMovies } = useMovieContext()
 
   function handleSubmit(e) {
     e.preventDefault();
     setRating(inputValue);
+    setMovies(
+        
+        function movieratei(){
+
+            for (let i = 0; i < movies.length; i++) {
+                if (movies[i].id === movie.id) {
+                    movies[i].ratings = inputValue
+                }
+
+            }
+         return movies
+
+    })
+
     closeModal();
   }
 
