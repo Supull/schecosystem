@@ -2,12 +2,13 @@ import MovieCard from "../components/MovieCard";
 import { useState, useEffect } from "react";
 import { searchMovies } from "../services/api";
 import { getPopularMovies } from "../services/api";
+import { useMovieContext } from "../contexts/MovieContext";
 import '../css/Home.css';
 
 function Home() {
 
     const [searchQuery,setsearchQuery] = useState("");
-    const [movies, setMovies] = useState([]);
+    const { movies, setMovies } = useMovieContext()
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true)
 
@@ -15,6 +16,11 @@ function Home() {
         const loadPopularMovies = async () => {
             try {
                 const popularMovies = await getPopularMovies()
+
+                const moviesWithRating = popularMovies.map(movie => ({
+                ...movie,          
+                ratings: "-/10"     
+                }));
                 setMovies(popularMovies)
             } catch (err) {
                 console.log(err)

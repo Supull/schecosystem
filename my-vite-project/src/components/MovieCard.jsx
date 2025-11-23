@@ -63,7 +63,7 @@ function MovieCard({ movie }) {
               fontSize: "15px"
             }}
           >
-            {rating}
+            {movie.ratings}
           </p>
         </div>
       </div>

@@ -9,6 +9,7 @@ export const MovieProvider = ({children}) => {
     const [favorites, setFavorites] = useState([])
     const [ToWatch, setToWatch] = useState([])
     const [rating, setRating] = useState("-/10")
+    const [movies, setMovies] = useState([]);
 
     
 
@@ -88,7 +89,9 @@ export const MovieProvider = ({children}) => {
         removeToWatch,
         isToWatch,
         rating,
-        setRating
+        setRating,
+        movies,
+        setMovies
     }
 
     return (
