@@ -7,7 +7,7 @@ function MovieCard({ movie }) {
   const [showModal, setShowModal] = useState(false);
   const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
   const { isToWatch, addToWatch, removeToWatch } = useMovieContext();
-  const { rating } = useMovieContext();
+  
 
   const favorite = isFavorite(movie.id);
   const toWatch = isToWatch(movie.id);

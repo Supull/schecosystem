@@ -4,12 +4,11 @@ import { useMovieContext } from "../contexts/MovieContext";
 
 function Popup({ closeModal, movie }) {
   const [inputValue, setInputValue] = useState("");
-  const { rating, setRating } = useMovieContext();
   const { movies, setMovies } = useMovieContext()
 
   function handleSubmit(e) {
     e.preventDefault();
-    setRating(inputValue);
+    
     setMovies(
         
         function movieratei(){
