@@ -16,6 +16,8 @@ function Home() {
         const loadPopularMovies = async () => {
             try {
                 const popularMovies = await getPopularMovies()
+                console.log("Popular movies:", popularMovies);
+
 
                 const moviesWithRating = popularMovies.map(movie => ({
                 ...movie,          

@@ -2,6 +2,7 @@ import '../css/MovieCard.css';
 import React, { useState } from 'react';
 import { useMovieContext } from '../contexts/MovieContext';
 import Popup from './Popup'; 
+import supabase from '../supabase-client';
 
 function MovieCard({ movie }) {
   const [showModal, setShowModal] = useState(false);
@@ -12,10 +13,25 @@ function MovieCard({ movie }) {
   const favorite = isFavorite(movie.id);
   const toWatch = isToWatch(movie.id);
 
-  function handleFavorite(e) {
+  async function handleFavorite(e) {
     e.preventDefault();
-    if (favorite) removeFromFavorites(movie.id);
-    else addToFavorites(movie);
+
+    if (favorite) {
+        removeFromFavorites(movie.id);
+
+        
+        await supabase
+        .from("Favorites")
+        .delete()
+        .contains("movies", { id: movie.id }); 
+    } else {
+        addToFavorites(movie);
+
+        
+        await supabase.from("Favorites").insert({
+        movies: movie   
+        });
+    }
   }
 
   function handleToWatch(e) {

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Favorite from './pages/favourite';
 import ToWatch from './pages/ToWatch.jsx';
 import Popup from './components/Popup.jsx';
+import supabase from './supabase-client.js';
 
 function App() {
   return (
